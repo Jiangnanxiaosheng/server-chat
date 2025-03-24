@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(SOURCES
     src/main.cpp
+    src/redis_connection_pool.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

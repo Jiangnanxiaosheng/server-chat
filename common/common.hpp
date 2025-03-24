@@ -17,4 +17,8 @@ enum ErrorCodes {
     UidInvalid,      // uid无效
 
     UnknownError,
+
+    NoAvailableChatServers,
+    ChatServerAlreadyRegistered,
+    ChatServerNotFound,
 };

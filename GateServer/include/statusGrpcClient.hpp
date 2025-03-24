@@ -15,8 +15,7 @@ using grpc::Status;
 
 using message::GetChatServerRequest;
 using message::GetChatServerResponse;
-using message::LoginRequest;
-using message::LoginResponse;
+
 using message::StatusService;
 
 class StatusGrpcClient : public Singleton<StatusGrpcClient> {
@@ -31,24 +30,6 @@ public:
         GetChatServerResponse reply;
         ClientContext context;
         Status status = m_stub->GetChatServer(&context, request, &reply);
-
-        if (!status.ok()) {
-            reply.set_error(ErrorCodes::ErrorRpcFailed);
-            std::cout << "Grpc failed: " << status.error_message() << "\n";
-        }
-
-        return reply;
-    }
-
-    // 用户登录请求
-    LoginResponse Login(std::string& username, std::string& token) {
-        LoginRequest request;
-        request.set_username(username);
-        request.set_token(token);
-
-        LoginResponse reply;
-        ClientContext context;
-        Status status = m_stub->Login(&context, request, &reply);
 
         if (!status.ok()) {
             reply.set_error(ErrorCodes::ErrorRpcFailed);

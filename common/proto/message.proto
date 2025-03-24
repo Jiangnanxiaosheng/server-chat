@@ -26,8 +26,8 @@ service StatusService {
     // GateServer 获取 ChatServer 的 IP 和端口请求
     rpc GetChatServer (GetChatServerRequest) returns (GetChatServerResponse);
 
-    // 用户登录请求，生成 token
-    rpc Login (LoginRequest) returns (LoginResponse);
+    // 更新连接数
+    rpc UpdateConnectionCount (UpdateConnectionCountRequest) returns (UpdateConnectionCountResponse);
 }
 
 // ChatServer 注册请求
@@ -65,15 +65,14 @@ message GetChatServerResponse {
     string token = 4; // 返回生成的 token
 }
 
-// 用户登录请求
-message LoginRequest {
-    string username = 1;
-    string token = 2;
+// 更新连接数请求
+message UpdateConnectionCountRequest {
+    string ip = 1;
+    int32 port = 2;
+    int32 connection_count = 3;
 }
 
-// 用户登录响应
-message LoginResponse {
+// 更新连接数响应
+message UpdateConnectionCountResponse {
     int32 error = 1;
-    string username = 2;
-    string token = 3;
 }
